@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VGGNet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-Jy-m5L" userLabel="Spinner Panel">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing VGGNet..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttJ-Gd-Gaq">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="36k-mv-OtJ"/>
+                                </subviews>
+                                <color key="backgroundColor" red="0.36671512441885629" green="0.69411766529999996" blue="0.039820268558663871" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ttJ-Gd-Gaq" firstAttribute="centerX" secondItem="4CG-Jy-m5L" secondAttribute="centerX" id="LrA-L0-vUe"/>
+                                    <constraint firstItem="ttJ-Gd-Gaq" firstAttribute="top" secondItem="4CG-Jy-m5L" secondAttribute="top" constant="20" id="Qr5-oh-DOq"/>
+                                    <constraint firstItem="36k-mv-OtJ" firstAttribute="top" secondItem="ttJ-Gd-Gaq" secondAttribute="bottom" constant="10" id="Ua3-5a-Sbi"/>
+                                    <constraint firstItem="36k-mv-OtJ" firstAttribute="centerX" secondItem="4CG-Jy-m5L" secondAttribute="centerX" id="b6z-BR-Rr0"/>
+                                    <constraint firstAttribute="bottom" secondItem="36k-mv-OtJ" secondAttribute="bottom" constant="20" id="ykT-BK-Vir"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.11764705882352941" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4CG-Jy-m5L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5Uw-q8-iIp"/>
+                            <constraint firstItem="4CG-Jy-m5L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jqz-0Z-owz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4CG-Jy-m5L" secondAttribute="bottom" id="ceK-7O-b2m"/>
+                            <constraint firstAttribute="trailing" secondItem="4CG-Jy-m5L" secondAttribute="trailing" id="y8D-SP-SeF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="spinner" destination="36k-mv-OtJ" id="qx1-VZ-opg"/>
+                        <outlet property="spinnerPanel" destination="4CG-Jy-m5L" id="ab9-8z-e73"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
+        </scene>
+    </scenes>
+</document>
