@@ -118,36 +118,36 @@ public class VGGNet {
   // After the last layer (fc8), we take the "softmax" of each output neuron.
   // This converts the last layer into a 1000-element vector of probabilities,
   // where each element in this vector corresponds to an ImageNet class label.
-  var softmax: MPSCNNSoftMax
+  let softmax: MPSCNNSoftMax
 
   /* The layers in the network: */
 
-  var conv1_1: MPSCNNConvolution  // 224x224x3  input, 64 kernels (3x3x3x64  = 1728  weights + 64 bias)
-  var conv1_2: MPSCNNConvolution  // 224x224x64 input, 64 kernels (3x3x64x64 = 36864 weights + 64 bias)
-  var pool1  : MPSCNNPoolingMax   // 224x224x64 input -> 112x112x64 output
+  let conv1_1: MPSCNNConvolution  // 224x224x3  input, 64 kernels (3x3x3x64  = 1728  weights + 64 bias)
+  let conv1_2: MPSCNNConvolution  // 224x224x64 input, 64 kernels (3x3x64x64 = 36864 weights + 64 bias)
+  let pool1  : MPSCNNPoolingMax   // 224x224x64 input -> 112x112x64 output
 
-  var conv2_1: MPSCNNConvolution  // 112x112x64  input, 128 kernels (3x3x64x128  = 73728  weights + 128 bias)
-  var conv2_2: MPSCNNConvolution  // 112x112x128 input, 128 kernels (3x3x128x128 = 147456 weights + 128 bias)
-  var pool2  : MPSCNNPoolingMax   // 112x112x128 input -> 56x56x128 output
+  let conv2_1: MPSCNNConvolution  // 112x112x64  input, 128 kernels (3x3x64x128  = 73728  weights + 128 bias)
+  let conv2_2: MPSCNNConvolution  // 112x112x128 input, 128 kernels (3x3x128x128 = 147456 weights + 128 bias)
+  let pool2  : MPSCNNPoolingMax   // 112x112x128 input -> 56x56x128 output
 
-  var conv3_1: MPSCNNConvolution  // 56x56x128 input, 256 kernels (3x3x128x256 = 294912 weights + 256 bias)
-  var conv3_2: MPSCNNConvolution  // 56x56x256 input, 256 kernels (3x3x256x256 = 589824 weights + 256 bias)
-  var conv3_3: MPSCNNConvolution  // 56x56x256 input, 256 kernels (3x3x256x256 = 589824 weights + 256 bias)
-  var pool3  : MPSCNNPoolingMax   // 56x56x256 input -> 28x28x256 output
+  let conv3_1: MPSCNNConvolution  // 56x56x128 input, 256 kernels (3x3x128x256 = 294912 weights + 256 bias)
+  let conv3_2: MPSCNNConvolution  // 56x56x256 input, 256 kernels (3x3x256x256 = 589824 weights + 256 bias)
+  let conv3_3: MPSCNNConvolution  // 56x56x256 input, 256 kernels (3x3x256x256 = 589824 weights + 256 bias)
+  let pool3  : MPSCNNPoolingMax   // 56x56x256 input -> 28x28x256 output
 
-  var conv4_1: MPSCNNConvolution  // 28x28x256 input, 512 kernels (3x3x256x512 = 1179648 weights + 512 bias)
-  var conv4_2: MPSCNNConvolution  // 28x28x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
-  var conv4_3: MPSCNNConvolution  // 28x28x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
-  var pool4  : MPSCNNPoolingMax   // 28x28x512 input -> 14x14x512 output
+  let conv4_1: MPSCNNConvolution  // 28x28x256 input, 512 kernels (3x3x256x512 = 1179648 weights + 512 bias)
+  let conv4_2: MPSCNNConvolution  // 28x28x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
+  let conv4_3: MPSCNNConvolution  // 28x28x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
+  let pool4  : MPSCNNPoolingMax   // 28x28x512 input -> 14x14x512 output
 
-  var conv5_1: MPSCNNConvolution  // 14x14x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
-  var conv5_2: MPSCNNConvolution  // 14x14x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
-  var conv5_3: MPSCNNConvolution  // 14x14x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
-  var pool5  : MPSCNNPoolingMax   // 14x14x512 input -> 7x7x512 output
+  let conv5_1: MPSCNNConvolution  // 14x14x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
+  let conv5_2: MPSCNNConvolution  // 14x14x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
+  let conv5_3: MPSCNNConvolution  // 14x14x512 input, 512 kernels (3x3x512x512 = 2359296 weights + 512 bias)
+  let pool5  : MPSCNNPoolingMax   // 14x14x512 input -> 7x7x512 output
 
-  var fc6: MPSCNNFullyConnected   // 4096 neurons (7x7x512x4096  = 102760448 weights + 4096 bias)
-  var fc7: MPSCNNFullyConnected   // 4096 neurons (1x1x4096x4096 = 16777216  weights + 4096 bias)
-  var fc8: MPSCNNFullyConnected   // 1000 neurons (1x1x4096x1000 = 4096000   weights + 1000 bias)
+  let fc6: MPSCNNFullyConnected   // 4096 neurons (7x7x512x4096  = 102760448 weights + 4096 bias)
+  let fc7: MPSCNNFullyConnected   // 4096 neurons (1x1x4096x4096 = 16777216  weights + 4096 bias)
+  let fc8: MPSCNNFullyConnected   // 1000 neurons (1x1x4096x1000 = 4096000   weights + 1000 bias)
 
   // Total parameters: 138.357.544. (The vast majority of those are in fc6!)
   // We store the weights and bias values as 32-bit floats, making the total
