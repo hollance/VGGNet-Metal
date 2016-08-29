@@ -19,6 +19,7 @@
 		7B24FE251D6DE49100077C27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B24FE241D6DE49100077C27 /* Assets.xcassets */; };
 		7BB2D4621D7070FA00FD54A9 /* parameters.data in Resources */ = {isa = PBXBuildFile; fileRef = 7BB2D4611D7070FA00FD54A9 /* parameters.data */; };
 		7BD51C3B1D6DE72F00777E4F /* VGGNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD51C3A1D6DE72F00777E4F /* VGGNet.swift */; };
+		7BDD54591D742C6100B57D60 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD54581D742C6100B57D60 /* VideoCapture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		7B24FE291D6DE49100077C27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB2D4611D7070FA00FD54A9 /* parameters.data */ = {isa = PBXFileReference; lastKnownFileType = file; path = parameters.data; sourceTree = "<group>"; };
 		7BD51C3A1D6DE72F00777E4F /* VGGNet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGGNet.swift; sourceTree = "<group>"; };
+		7BDD54581D742C6100B57D60 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,9 @@
 			children = (
 				7B24FE1D1D6DE49100077C27 /* AppDelegate.swift */,
 				7B24FE1F1D6DE49100077C27 /* ViewController.swift */,
-				7B0233C81D72F36100944BBE /* Resources */,
+				7BDD54581D742C6100B57D60 /* VideoCapture.swift */,
 				7B0233A71D720B8C00944BBE /* VGGNet */,
+				7B0233C81D72F36100944BBE /* Resources */,
 			);
 			name = Sources;
 			path = VGGNet;
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDD54591D742C6100B57D60 /* VideoCapture.swift in Sources */,
 				7B0233A41D72041200944BBE /* Shaders.metal in Sources */,
 				7B0233DA1D731CC300944BBE /* VGGNetLabels.swift in Sources */,
 				7B0233A61D720B1600944BBE /* VGGNetData.swift in Sources */,

@@ -1,5 +1,7 @@
 import Foundation
 
+public typealias Prediction = (label: String, probability: Float)
+
 /*
   The list of ImageNet label names, loaded from synset_words.txt.
 */
@@ -32,7 +34,7 @@ public class VGGNetLabels {
   }
 
   /* Returns the labels for the top 5 guesses. */
-  public func top5Labels(prediction: [Float]) -> [String] {
+  public func top5Labels(prediction: [Float]) -> [Prediction] {
     precondition(prediction.count == 1000)
 
     //print(prediction)
@@ -45,8 +47,7 @@ public class VGGNetLabels {
 
     return zip(0...1000, prediction)
            .sorted(by: { (a: tuple, b: tuple) -> Bool in a.prob > b.prob })
-           .prefix(through: 5)
-           .map({ (x: tuple) -> String in
-                  String(format: "%3.2f%% %@", x.prob * 100, labels[x.idx]) })
+           .prefix(through: 4)
+           .map({ (x: tuple) -> Prediction in (labels[x.idx], x.prob) })
   }
 }

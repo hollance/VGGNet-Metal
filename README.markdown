@@ -2,15 +2,19 @@
 
 This is the source code that accompanies my blog post [Convolutional neural networks on the iPhone with VGGNet](http://TODO).
 
-This project shows how to implement the 16-layer VGGNet convolutional neural network to do image recognition on the iPhone.
+This project shows how to implement the 16-layer VGGNet convolutional neural network for basic image recognition on the iPhone.
 
-VGGNet was a competitor in the [ImageNet ILSVRC-2014](http://image-net.org/challenges/LSVRC/2014/results) image classification competition and scored second place. The iPhone app uses the version from the [Caffe Model Zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo). For more details about VGGNet, see the [project page](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) and the [paper](http://arxiv.org/pdf/1409.1556):
+VGGNet was a competitor in the [ImageNet ILSVRC-2014](http://image-net.org/challenges/LSVRC/2014/results) image classification competition and scored second place. For more details about VGGNet, see the [project page](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) and the [paper](http://arxiv.org/pdf/1409.1556):
 
     Very Deep Convolutional Networks for Large-Scale Image Recognition
     K. Simonyan, A. Zisserman
     arXiv:1409.1556
 
-You need an iPhone that supports Metal (and Metal Performance Shaders) to run this app.
+The iPhone app uses the VGGNet version from the [Caffe Model Zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo).
+
+### How to run the app
+
+You need an iPhone or iPad that supports Metal, running iOS 10 or better. (I have only tested the app on an iPhone 6s.)
 
 **NOTE:** The source code won't run as-is. You need to do the following before you can build the Xcode project:
 
@@ -28,6 +32,6 @@ This generates the file `./output/parameters.data`. It will take a few minutes! 
 
 4 - Copy `parameters.data` into the `VGGNet-iOS/VGGNet` folder. 
 
-5 - Now you can build the app in Xcode. You can only build for the device, the simulator isn't supported (gives compiler errors).
+5 - Now you can build the app in Xcode (version 8.0 or better). You can only build for the device, the simulator isn't supported (gives compiler errors).
 
 The VGGNet+Metal source code is licensed under the terms of the MIT license.

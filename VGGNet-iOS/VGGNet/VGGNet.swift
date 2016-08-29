@@ -104,7 +104,10 @@ private func makeFC(device: MTLDevice,
 public class VGGNet {
   let device: MTLDevice
   let commandQueue: MTLCommandQueue
-  let pipeline: MTLComputePipelineState
+
+  // The custom compute kernels for preprocessing the input images.
+  let pipelineRGB: MTLComputePipelineState
+  let pipelineBGR: MTLComputePipelineState
 
   let outputImage: MPSImage
 
@@ -184,8 +187,11 @@ public class VGGNet {
     // kernel (from Shaders.metal) and set up the compute pipeline.
     do {
       let library = device.newDefaultLibrary()!
-      let kernelFunction = library.newFunction(withName: "adjust_mean")
-      pipeline = try device.newComputePipelineState(with: kernelFunction!)
+      let adjust_mean_rgb = library.newFunction(withName: "adjust_mean_rgb")
+      pipelineRGB = try device.newComputePipelineState(with: adjust_mean_rgb!)
+
+      let adjust_mean_bgr = library.newFunction(withName: "adjust_mean_bgr")
+      pipelineBGR = try device.newComputePipelineState(with: adjust_mean_bgr!)
     } catch {
       fatalError("Error initializing compute pipeline")
     }
@@ -237,7 +243,7 @@ public class VGGNet {
      the format the network expects, then feeds it into the network. The result
      is a 1000-element vector of probabilities. Returns the 5 ImageNet classes
      with the highest predicted probability values. */
-  public func predict(image inputImage: MPSImage) -> [String] {
+  public func predict(image inputImage: MPSImage, bgr: Bool) -> [Prediction] {
     let startTime = CACurrentMediaTime()
 
     autoreleasepool{
@@ -255,11 +261,12 @@ public class VGGNet {
       let img2 = MPSTemporaryImage(commandBuffer: commandBuffer, imageDescriptor: input_id)
 
       // Adjust the RGB values of each pixel to be in the range -128...127
-      // by subtracting the "mean pixel". This also swaps the R and B values
-      // because the model expects BGR pixels. As far as I can tell there is
-      // no MPS shader that can do this, so we use a custom compute kernel.
+      // by subtracting the "mean pixel". If the input texture is RGB, this 
+      // also swaps the R and B values because the model expects BGR pixels. 
+      // As far as I can tell there is no MPS shader that can do these things,
+      // so we use a custom compute kernel.
       let encoder = commandBuffer.computeCommandEncoder()
-      encoder.setComputePipelineState(pipeline)
+      encoder.setComputePipelineState(bgr ? pipelineBGR : pipelineRGB)
       encoder.setTexture(img1.texture, at: 0)
       encoder.setTexture(img2.texture, at: 1)
       let threadsPerGroups = MTLSizeMake(8, 8, 1)
