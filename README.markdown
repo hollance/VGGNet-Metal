@@ -12,6 +12,8 @@ VGGNet was a competitor in the [ImageNet ILSVRC-2014](http://image-net.org/chall
 
 The iPhone app uses the VGGNet version from the [Caffe Model Zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo).
 
+![The demo app](Screenshot.png)
+
 ### How to run the app
 
 You need an iPhone or iPad that supports Metal, running iOS 10 or better. (I have only tested the app on an iPhone 6s.)
