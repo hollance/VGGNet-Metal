@@ -1,6 +1,6 @@
 # VGGNet+Metal
 
-This is the source code that accompanies my blog post [Convolutional neural networks on the iPhone with VGGNet](http://TODO).
+This is the source code that accompanies my blog post [Convolutional neural networks on the iPhone with VGGNet](http://matthijshollemans.com/2016/08/30/vggnet-convolutional-neural-network-iphone/).
 
 This project shows how to implement the 16-layer VGGNet convolutional neural network for basic image recognition on the iPhone.
 
