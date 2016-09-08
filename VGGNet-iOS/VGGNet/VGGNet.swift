@@ -178,7 +178,7 @@ public class VGGNet {
     let startTime = CACurrentMediaTime()
 
     self.device = device
-    commandQueue = device.newCommandQueue()
+    commandQueue = device.makeCommandQueue()
 
     outputImage = MPSImage(device: device, imageDescriptor: output_id)
 
@@ -187,11 +187,11 @@ public class VGGNet {
     // kernel (from Shaders.metal) and set up the compute pipeline.
     do {
       let library = device.newDefaultLibrary()!
-      let adjust_mean_rgb = library.newFunction(withName: "adjust_mean_rgb")
-      pipelineRGB = try device.newComputePipelineState(with: adjust_mean_rgb!)
+      let adjust_mean_rgb = library.makeFunction(name: "adjust_mean_rgb")
+      pipelineRGB = try device.makeComputePipelineState(function: adjust_mean_rgb!)
 
-      let adjust_mean_bgr = library.newFunction(withName: "adjust_mean_bgr")
-      pipelineBGR = try device.newComputePipelineState(with: adjust_mean_bgr!)
+      let adjust_mean_bgr = library.makeFunction(name: "adjust_mean_bgr")
+      pipelineBGR = try device.makeComputePipelineState(function: adjust_mean_bgr!)
     } catch {
       fatalError("Error initializing compute pipeline")
     }
@@ -247,7 +247,7 @@ public class VGGNet {
     let startTime = CACurrentMediaTime()
 
     autoreleasepool{
-      let commandBuffer = commandQueue.commandBuffer()
+      let commandBuffer = commandQueue.makeCommandBuffer()
 
       // This lets us squeeze some extra speed out of Metal.
       MPSTemporaryImage.prefetchStorage(with: commandBuffer, imageDescriptorList: [
@@ -265,7 +265,7 @@ public class VGGNet {
       // also swaps the R and B values because the model expects BGR pixels. 
       // As far as I can tell there is no MPS shader that can do these things,
       // so we use a custom compute kernel.
-      let encoder = commandBuffer.computeCommandEncoder()
+      let encoder = commandBuffer.makeComputeCommandEncoder()
       encoder.setComputePipelineState(bgr ? pipelineBGR : pipelineRGB)
       encoder.setTexture(img1.texture, at: 0)
       encoder.setTexture(img2.texture, at: 1)
