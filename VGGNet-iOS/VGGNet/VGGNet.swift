@@ -40,11 +40,16 @@ private func makeConv(device: MTLDevice,
 private func makePool(device: MTLDevice) -> MPSCNNPoolingMax {
   // All pooling layers in VGGNet are max pool, 2x2, stride 2. This chops the
   // width and height of the data volume in half but leaves the depth the same.
-  return MPSCNNPoolingMax(device: device,
-                          kernelWidth: 2,
-                          kernelHeight: 2,
-                          strideInPixelsX: 2,
-                          strideInPixelsY: 2)
+  let pool = MPSCNNPoolingMax(device: device,
+                              kernelWidth: 2,
+                              kernelHeight: 2,
+                              strideInPixelsX: 2,
+                              strideInPixelsY: 2)
+
+  // By default the pooling layer with a 2x2 kernel will start at (-1, -1),
+  // so change the offset so that it starts at (0, 0).
+  pool.offset = MPSOffset(x: 1, y: 1, z: 0)
+  return pool
 }
 
 private func makeFC(device: MTLDevice,
