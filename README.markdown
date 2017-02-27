@@ -20,6 +20,8 @@ You need an iPhone or iPad that supports Metal, running iOS 10 or better. (I hav
 
 **NOTE:** The source code won't run as-is. You need to do the following before you can build the Xcode project:
 
+0 (optional) - If you don't want to set up a local environment for all of below, you can download the coverted file from [here](https://mega.nz/#!fcFyGJBJ!5Zy47jS3xhHP-0CjEVg5CRzx1wF1itnf9AHVdeRBHYk).
+
 1 - Download the [prototxt](https://gist.githubusercontent.com/ksimonyan/211839e770f7b538e2d8/raw/0067c9b32f60362c74f4c445a080beed06b07eb3/VGG_ILSVRC_16_layers_deploy.prototxt) file.
 
 2 - Download the [caffemodel](http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_16_layers.caffemodel) file.
