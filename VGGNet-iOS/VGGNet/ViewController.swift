@@ -149,7 +149,7 @@ class ViewController: UIViewController, VideoCaptureDelegate {
 
   func didCapture(texture: MTLTexture?, previewImage: UIImage?) {
     if let texture = texture, let previewImage = previewImage {
-      predict(texture: texture, previewImage: previewImage, bgr: true)
+      predict(texture: texture, previewImage: previewImage, bgr: false)
     } else {
       imageView.image = nil
     }
